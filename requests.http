@@ -1,0 +1,29 @@
+# Add a new expense
+POST http://localhost:8000/add
+Content-Type: application/json
+
+{
+  "date": "2025-01-15",
+  "description": "Laptop bag",
+  "amount": 85.50
+}
+
+###
+# List all expenses
+GET http://localhost:8000/list/
+
+###
+# Get a single expense by ID
+GET http://localhost:8000/1
+
+###
+# Get total of all expenses
+GET http://localhost:8000/summary/
+
+###
+# Get total for a specific month (1-12)
+GET http://localhost:8000/summary/1
+
+###
+# Delete an expense by ID
+DELETE http://localhost:8000/delete/1
