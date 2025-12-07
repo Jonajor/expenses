@@ -27,3 +27,6 @@ frontend/dist/
 
 # Build artifacts
 *.egg-info/
+
+# Shared exports
+*.pdf
