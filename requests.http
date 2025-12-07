@@ -1,12 +1,32 @@
-# Add a new expense
+# Add a new expense with attachment (image or PDF)
 POST http://localhost:8000/add
-Content-Type: application/json
+Content-Type: multipart/form-data; boundary=---011000010111000001101001
 
-{
-  "date": "2025-01-15",
-  "description": "Laptop bag",
-  "amount": 85.50
-}
+-----011000010111000001101001
+Content-Disposition: form-data; name="date"
+
+2025-01-15
+-----011000010111000001101001
+Content-Disposition: form-data; name="amount"
+
+85.50
+-----011000010111000001101001
+Content-Disposition: form-data; name="description"
+
+Laptop bag
+-----011000010111000001101001
+Content-Disposition: form-data; name="attachment"; filename="receipt.pdf"
+Content-Type: application/pdf
+
+< ./sample-data/receipt.pdf
+-----011000010111000001101001--
+
+###
+# Add a new expense without attachment (form fields only)
+POST http://localhost:8000/add
+Content-Type: application/x-www-form-urlencoded
+
+date=2025-02-01&amount=12.99&description=Coffee
 
 ###
 # List all expenses
@@ -15,6 +35,10 @@ GET http://localhost:8000/list/
 ###
 # Get a single expense by ID
 GET http://localhost:8000/1
+
+###
+# Download attachment for an expense
+GET http://localhost:8000/attachment/1
 
 ###
 # Get total of all expenses
